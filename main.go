@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"strconv"
+	"sync"
 	"syscall"
 	"time"
 
@@ -21,6 +22,8 @@ const (
 	minPollInterval     = 2 * time.Second
 	defaultPort         = "8080"
 	defaultStatusExpiry = 3 * time.Minute
+	heartbeatInterval   = 5 * time.Minute
+	maxRecentTracks     = 20
 )
 
 func main() {
@@ -56,10 +59,46 @@ func main() {
 	pollLoop(ctx, sp, slack)
 }
 
+// recentTracks keeps a rolling log of recently played tracks for heartbeat logging.
+type recentTracks struct {
+	mu     sync.Mutex
+	tracks []trackEntry
+}
+
+type trackEntry struct {
+	text string
+	at   time.Time
+}
+
+func (r *recentTracks) add(text string) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.tracks = append(r.tracks, trackEntry{text: text, at: time.Now()})
+	if len(r.tracks) > maxRecentTracks {
+		r.tracks = r.tracks[len(r.tracks)-maxRecentTracks:]
+	}
+}
+
+func (r *recentTracks) since(d time.Duration) []trackEntry {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	cutoff := time.Now().Add(-d)
+	var result []trackEntry
+	for _, t := range r.tracks {
+		if t.at.After(cutoff) {
+			result = append(result, t)
+		}
+	}
+	return result
+}
+
 func pollLoop(ctx context.Context, sp *spotify.Client, slack *status.SlackStatus) {
 	var lastTrackID string
+	recent := &recentTracks{}
 	tokenSaveTick := time.NewTicker(30 * time.Minute)
 	defer tokenSaveTick.Stop()
+	heartbeat := time.NewTicker(heartbeatInterval)
+	defer heartbeat.Stop()
 
 	for {
 		select {
@@ -68,6 +107,9 @@ func pollLoop(ctx context.Context, sp *spotify.Client, slack *status.SlackStatus
 			return
 		case <-tokenSaveTick.C:
 			sp.SaveToken()
+			continue
+		case <-heartbeat.C:
+			logHeartbeat(recent)
 			continue
 		default:
 		}
@@ -93,6 +135,7 @@ func pollLoop(ctx context.Context, sp *spotify.Client, slack *status.SlackStatus
 		if string(track.ID) != lastTrackID {
 			lastTrackID = string(track.ID)
 			text := track.StatusText()
+			recent.add(text)
 			expiry := track.TimeUntilEnd() + defaultStatusExpiry
 			if err := slack.Set(ctx, text, expiry); err != nil {
 				log.Printf("[slack] error: %v", err)
@@ -108,6 +151,18 @@ func pollLoop(ctx context.Context, sp *spotify.Client, slack *status.SlackStatus
 			wait = minPollInterval
 		}
 		sleep(ctx, wait)
+	}
+}
+
+func logHeartbeat(recent *recentTracks) {
+	tracks := recent.since(heartbeatInterval)
+	if len(tracks) == 0 {
+		log.Printf("[heartbeat] alive — no tracks in the last %v", heartbeatInterval)
+		return
+	}
+	log.Printf("[heartbeat] alive — %d track(s) in the last %v:", len(tracks), heartbeatInterval)
+	for i, t := range tracks {
+		log.Printf("[heartbeat]   %d. %s", i+1, t.text)
 	}
 }
 
