@@ -1,0 +1,4 @@
+.env
+spotify_token.json
+slack-spotify-status-sync
+*.exe
