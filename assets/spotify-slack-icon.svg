@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+
+    <!-- Background gradient: deep dark purple-black -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="60%" stop-color="#0d0618"/>
+      <stop offset="100%" stop-color="#050308"/>
+    </radialGradient>
+
+    <!-- Spotify green glow -->
+    <radialGradient id="spotifyGlow" cx="32%" cy="52%" r="42%">
+      <stop offset="0%" stop-color="#1DB954" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1DB954" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Slack multi-color glow -->
+    <radialGradient id="slackGlow" cx="68%" cy="52%" r="42%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Center merge glow -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#a0f0c0" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Spotify circle gradient -->
+    <radialGradient id="spotifyCircle" cx="38%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#21d860"/>
+      <stop offset="100%" stop-color="#148040"/>
+    </radialGradient>
+
+    <!-- Status bar gradient -->
+    <linearGradient id="statusBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1DB954" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#2d1b5e" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#4A154B" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Arrow glow gradient -->
+    <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1DB954"/>
+      <stop offset="50%" stop-color="#a0f8d0"/>
+      <stop offset="100%" stop-color="#ECB22E"/>
+    </linearGradient>
+
+    <!-- Particle glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="bigGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="logoShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+
+    <!-- Stars pattern -->
+    <pattern id="stars" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="15" r="0.8" fill="#ffffff" opacity="0.4"/>
+      <circle cx="45" cy="5"  r="0.6" fill="#ffffff" opacity="0.3"/>
+      <circle cx="70" cy="28" r="1.0" fill="#ffffff" opacity="0.5"/>
+      <circle cx="22" cy="55" r="0.7" fill="#ffffff" opacity="0.35"/>
+      <circle cx="60" cy="62" r="0.9" fill="#ffffff" opacity="0.4"/>
+      <circle cx="5"  cy="72" r="0.5" fill="#ffffff" opacity="0.25"/>
+      <circle cx="38" cy="40" r="0.6" fill="#1DB954" opacity="0.4"/>
+      <circle cx="75" cy="50" r="0.5" fill="#7C3AED" opacity="0.35"/>
+    </pattern>
+
+    <!-- Scanline texture -->
+    <pattern id="scanlines" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="4" height="1" fill="#000000" opacity="0.06"/>
+    </pattern>
+
+  </defs>
+
+  <!-- ===== BACKGROUND ===== -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)"/>
+  <rect width="1024" height="1024" fill="url(#stars)"/>
+
+  <!-- Ambient glows -->
+  <rect width="1024" height="1024" fill="url(#spotifyGlow)"/>
+  <rect width="1024" height="1024" fill="url(#slackGlow)"/>
+  <rect width="1024" height="1024" fill="url(#centerGlow)"/>
+
+  <!-- Subtle vignette -->
+  <rect width="1024" height="1024" fill="url(#scanlines)"/>
+
+  <!-- ===== DECORATIVE RING — outer orbit ===== -->
+  <circle cx="512" cy="490" r="370" fill="none" stroke="#1DB954" stroke-width="0.8" stroke-opacity="0.12" stroke-dasharray="6 14"/>
+  <circle cx="512" cy="490" r="390" fill="none" stroke="#7C3AED" stroke-width="0.6" stroke-opacity="0.10" stroke-dasharray="3 18"/>
+
+  <!-- Floating music note particles (ambient) -->
+  <!-- note top-left -->
+  <g opacity="0.25" transform="translate(148, 200) rotate(-15)">
+    <rect x="0" y="0" width="6" height="22" rx="2" fill="#1DB954"/>
+    <ellipse cx="-5" cy="22" rx="7" ry="5" fill="#1DB954"/>
+    <rect x="6" y="0" width="18" height="3" rx="1.5" fill="#1DB954"/>
+    <rect x="24" y="0" width="6" height="16" rx="2" fill="#1DB954"/>
+    <ellipse cx="19" cy="16" rx="7" ry="5" fill="#1DB954"/>
+  </g>
+  <!-- note bottom-right -->
+  <g opacity="0.20" transform="translate(830, 720) rotate(10)">
+    <rect x="0" y="0" width="5" height="18" rx="2" fill="#ECB22E"/>
+    <ellipse cx="-4" cy="18" rx="6" ry="4" fill="#ECB22E"/>
+    <rect x="5" y="0" width="14" height="2.5" rx="1.5" fill="#ECB22E"/>
+    <rect x="19" y="0" width="5" height="13" rx="2" fill="#ECB22E"/>
+    <ellipse cx="15" cy="13" rx="6" ry="4" fill="#ECB22E"/>
+  </g>
+  <!-- note top-right -->
+  <g opacity="0.18" transform="translate(840, 180) rotate(8)">
+    <rect x="0" y="0" width="5" height="18" rx="2" fill="#36C5F0"/>
+    <ellipse cx="-4" cy="18" rx="6" ry="4" fill="#36C5F0"/>
+  </g>
+
+  <!-- ===== SPOTIFY LOGO (left side) ===== -->
+  <!-- Glow bloom behind Spotify circle -->
+  <circle cx="320" cy="460" r="165" fill="#1DB954" opacity="0.12" filter="url(#bigGlow)"/>
+  <circle cx="320" cy="460" r="140" fill="#1DB954" opacity="0.08" filter="url(#bigGlow)"/>
+
+  <!-- Main Spotify green circle -->
+  <circle cx="320" cy="460" r="138" fill="url(#spotifyCircle)" filter="url(#logoShadow)"/>
+
+  <!-- Spotify sound wave arcs (white, centered in circle) -->
+  <!-- Three classic arcs — wide, medium, narrow -->
+  <!-- Arc 1: largest -->
+  <path d="M 205 413 Q 320 355 435 413"
+        fill="none" stroke="white" stroke-width="22" stroke-linecap="round" opacity="0.97"/>
+  <!-- Arc 2: medium -->
+  <path d="M 225 454 Q 320 408 415 454"
+        fill="none" stroke="white" stroke-width="20" stroke-linecap="round" opacity="0.97"/>
+  <!-- Arc 3: smallest -->
+  <path d="M 248 495 Q 320 463 392 495"
+        fill="none" stroke="white" stroke-width="18" stroke-linecap="round" opacity="0.97"/>
+
+  <!-- Spotify circle edge highlight -->
+  <circle cx="320" cy="460" r="138" fill="none" stroke="#5aee8a" stroke-width="2.5" opacity="0.30"/>
+
+  <!-- "SPOTIFY" micro-label below circle -->
+  <text x="320" y="642" font-family="'Arial Black', sans-serif" font-size="19" font-weight="900"
+        fill="#1DB954" text-anchor="middle" letter-spacing="10" opacity="0.7">SPOTIFY</text>
+
+  <!-- ===== SLACK LOGO (right side) ===== -->
+  <!-- Glow bloom behind Slack -->
+  <circle cx="704" cy="460" r="165" fill="#4A154B" opacity="0.18" filter="url(#bigGlow)"/>
+
+  <!-- Slack hashtag: 4 rounded bars in a 2×2 grid -->
+  <!-- The Slack logo is built as overlapping rounded rectangles forming a # -->
+  <!-- Colors: red #E01E5A, blue #36C5F0, green #2EB67D, yellow #ECB22E -->
+
+  <!-- HORIZONTAL bars of the # -->
+  <!-- Top horizontal bar -->
+  <rect x="604" y="404" width="200" height="54" rx="27" fill="#ECB22E" filter="url(#softGlow)"/>
+  <!-- Bottom horizontal bar -->
+  <rect x="604" y="482" width="200" height="54" rx="27" fill="#2EB67D" filter="url(#softGlow)"/>
+
+  <!-- VERTICAL bars of the # -->
+  <!-- Left vertical bar -->
+  <rect x="648" y="360" width="54" height="200" rx="27" fill="#E01E5A" filter="url(#softGlow)"/>
+  <!-- Right vertical bar -->
+  <rect x="726" y="360" width="54" height="200" rx="27" fill="#36C5F0" filter="url(#softGlow)"/>
+
+  <!-- Intersection corner circles (cover the join points to make Slack's distinct rounded corners) -->
+  <!-- top-left join: yellow/red -->
+  <circle cx="675" cy="431" r="27" fill="#E01E5A" filter="url(#softGlow)"/>
+  <!-- top-right join: yellow/blue -->
+  <circle cx="753" cy="431" r="27" fill="#ECB22E" filter="url(#softGlow)"/>
+  <!-- bottom-left join: green/red -->
+  <circle cx="675" cy="509" r="27" fill="#2EB67D" filter="url(#softGlow)"/>
+  <!-- bottom-right join: green/blue -->
+  <circle cx="753" cy="509" r="27" fill="#36C5F0" filter="url(#softGlow)"/>
+
+  <!-- "SLACK" micro-label below hashtag -->
+  <text x="704" y="642" font-family="'Arial Black', sans-serif" font-size="19" font-weight="900"
+        fill="#9B59B6" text-anchor="middle" letter-spacing="12" opacity="0.7">SLACK</text>
+
+  <!-- ===== CENTER CONNECTOR — music note → arrow beam ===== -->
+  <!-- Beam line connecting the two logos -->
+  <line x1="462" y1="460" x2="562" y2="460"
+        stroke="url(#arrowGrad)" stroke-width="3.5" stroke-linecap="round" opacity="0.8"
+        filter="url(#softGlow)"/>
+
+  <!-- Arrow head pointing right (Spotify → Slack) -->
+  <polygon points="568,452 584,460 568,468" fill="#a0f8d0" opacity="0.9" filter="url(#softGlow)"/>
+
+  <!-- Musical note in the center connector -->
+  <g transform="translate(493, 440)" filter="url(#glow)">
+    <!-- stem -->
+    <rect x="14" y="0" width="4.5" height="24" rx="2" fill="#e0fff0" opacity="0.95"/>
+    <!-- flag -->
+    <path d="M18.5,0 Q30,-4 28,8" fill="none" stroke="#e0fff0" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+    <!-- note head -->
+    <ellipse cx="9" cy="23" rx="9" ry="6.5" fill="#e0fff0" opacity="0.95" transform="rotate(-15 9 23)"/>
+  </g>
+
+  <!-- Pulse rings around center -->
+  <circle cx="512" cy="460" r="55" fill="none" stroke="#a0f8d0" stroke-width="1" stroke-opacity="0.20" stroke-dasharray="4 8"/>
+  <circle cx="512" cy="460" r="72" fill="none" stroke="#1DB954" stroke-width="0.8" stroke-opacity="0.12" stroke-dasharray="3 10"/>
+
+  <!-- ===== TOP HEADER BAR ===== -->
+  <rect x="0" y="0" width="1024" height="68" fill="#0d0820" opacity="0.92"/>
+  <rect x="0" y="0" width="1024" height="68" fill="url(#statusBar)" opacity="0.25"/>
+  <!-- bottom edge glow line -->
+  <rect x="0" y="64" width="1024" height="3" fill="#1DB954" opacity="0.5"/>
+  <rect x="0" y="67" width="1024" height="1" fill="#7C3AED" opacity="0.4"/>
+
+  <!-- Headphones icon in top bar (left) -->
+  <g transform="translate(38, 18)" fill="none" stroke="#1DB954" stroke-linecap="round" stroke-linejoin="round">
+    <!-- arc -->
+    <path d="M6 20 Q6 6 20 6 Q34 6 34 20" stroke-width="3.5"/>
+    <!-- left ear cup -->
+    <rect x="2" y="18" width="8" height="12" rx="3" fill="#1DB954" stroke="none"/>
+    <!-- right ear cup -->
+    <rect x="30" y="18" width="8" height="12" rx="3" fill="#1DB954" stroke="none"/>
+  </g>
+
+  <!-- Top bar text -->
+  <text x="512" y="42" font-family="'Arial Black', 'Helvetica Neue', sans-serif"
+        font-size="24" font-weight="900" fill="#ffffff" text-anchor="middle"
+        letter-spacing="9" opacity="0.92">NOW PLAYING → SLACK STATUS</text>
+
+  <!-- Hash icon right side of bar -->
+  <g transform="translate(950, 14)" opacity="0.7">
+    <rect x="0"  y="8"  width="36" height="7" rx="3.5" fill="#ECB22E"/>
+    <rect x="0"  y="21" width="36" height="7" rx="3.5" fill="#2EB67D"/>
+    <rect x="8"  y="0"  width="7" height="40" rx="3.5" fill="#E01E5A"/>
+    <rect x="21" y="0"  width="7" height="40" rx="3.5" fill="#36C5F0"/>
+    <!-- cover intersections -->
+    <circle cx="11.5" cy="11.5" r="3.5" fill="#E01E5A"/>
+    <circle cx="24.5" cy="11.5" r="3.5" fill="#ECB22E"/>
+    <circle cx="11.5" cy="24.5" r="3.5" fill="#2EB67D"/>
+    <circle cx="24.5" cy="24.5" r="3.5" fill="#36C5F0"/>
+  </g>
+
+  <!-- ===== BOTTOM STATUS BAR ===== -->
+  <rect x="0" y="882" width="1024" height="142" fill="#070412" opacity="0.94"/>
+  <rect x="0" y="882" width="1024" height="3" fill="#1DB954" opacity="0.45"/>
+  <rect x="0" y="885" width="1024" height="1" fill="#7C3AED" opacity="0.35"/>
+
+  <!-- Fake Slack status preview in the bar -->
+  <!-- Avatar circle -->
+  <circle cx="80" cy="953" r="30" fill="#1DB954" opacity="0.85"/>
+  <!-- Headphones drawn in SVG (no emoji) -->
+  <g transform="translate(57, 930)" fill="none" stroke-linecap="round">
+    <path d="M8 22 Q8 6 23 6 Q38 6 38 22" stroke="#0d3a18" stroke-width="4"/>
+    <rect x="3"  y="20" width="10" height="14" rx="4" fill="#0d3a18"/>
+    <rect x="33" y="20" width="10" height="14" rx="4" fill="#0d3a18"/>
+  </g>
+
+  <!-- Status text preview -->
+  <text x="128" y="938" font-family="'Arial', sans-serif" font-size="16" fill="#888888" letter-spacing="1" opacity="0.7">Your Slack status</text>
+  <!-- Music note icon before status text -->
+  <g transform="translate(128, 942)" filter="url(#softGlow)">
+    <rect x="10" y="0" width="4" height="18" rx="2" fill="#1DB954"/>
+    <path d="M14,0 Q24,-3 22,7" fill="none" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="6" cy="17" rx="7" ry="5" fill="#1DB954" transform="rotate(-15 6 17)"/>
+  </g>
+  <text x="158" y="964" font-family="'Arial Black', sans-serif" font-size="22" font-weight="700" fill="#ffffff" opacity="0.92">Beautiful Soul — Katy J Pearson</text>
+
+  <!-- Online dot -->
+  <circle cx="101" cy="976" r="9" fill="#1DB954" stroke="#070412" stroke-width="2.5"/>
+
+  <!-- Divider -->
+  <line x1="730" y1="900" x2="730" y2="1020" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.08"/>
+
+  <!-- Right side: branding text -->
+  <text x="877" y="935" font-family="'Arial Black', sans-serif" font-size="14" font-weight="900"
+        fill="#1DB954" text-anchor="middle" letter-spacing="5" opacity="0.8">SPOTIFY</text>
+  <text x="877" y="955" font-family="'Arial', sans-serif" font-size="11" fill="#444444"
+        text-anchor="middle" letter-spacing="2" opacity="0.6">×</text>
+  <text x="877" y="975" font-family="'Arial Black', sans-serif" font-size="14" font-weight="900"
+        fill="#9B59B6" text-anchor="middle" letter-spacing="5" opacity="0.8">SLACK</text>
+  <text x="877" y="1006" font-family="'Arial', sans-serif" font-size="10" fill="#333355"
+        text-anchor="middle" letter-spacing="3" opacity="0.5">STATUS SYNC</text>
+
+  <!-- Scanlines overlay for texture -->
+  <rect width="1024" height="1024" fill="url(#scanlines)" opacity="0.5"/>
+
+</svg>
